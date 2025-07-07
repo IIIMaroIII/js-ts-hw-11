@@ -35,8 +35,15 @@ export interface PixabayImagesResponse {
 }
 
 export interface IPixabayApi {
+	page: number;
+	per_page: number;
+
 	fetchImages(opt: RequestInit): Promise<PixabayImagesResponse>;
 	setQuery(q: string): this | undefined;
+	increasePage(): this;
+	resetPage(): this;
+	get perPage(): number;
+	set perPage(value: number);
 }
 // fetchOpt: RequestInit = {}, baseUrl: string = ''
 export interface PixabayApiOptions {

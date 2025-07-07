@@ -3,7 +3,9 @@ import { glob } from 'glob';
 
 export default defineConfig(({ command }) => {
 	return {
-		define: {},
+		define: {
+			global: 'window',
+		},
 		root: 'src',
 		build: {
 			sourcemap: true,
