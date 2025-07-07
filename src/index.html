@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./css/style.css" />
 		<title>Vite + TS</title>
 	</head>
 	<body>
@@ -14,27 +13,21 @@
 					<li class="list__item"><a href="./index.html" class="list__link">Home</a></li>
 				</ul>
 				<form class="form" data-form>
-					<label>
-						<input
-							type="text"
-							name="search-text"
-							placeholder="Search images..."
-							data-input="search"
-							required
-						/>
-					</label>
-					<label>
-						<input
-							type="password"
-							name="search-pass"
-							placeholder="pass"
-							data-input="pass"
-							required
-						/>
-					</label>
-					<button type="submit" data-btnSubmit="search">Search</button>
+					<input
+						class="input"
+						type="text"
+						name="search-text"
+						placeholder="Search images..."
+						data-input="search"
+						required
+					/>
+
+					<button class="btn search" type="submit" data-btn="search">Search</button>
 				</form>
-				<ul class="gallery"></ul>
+				<ul class="gallery" data-gallery></ul>
+				<button class="btn load-more" type="button" data-btn="loadMore">
+					<span class="loader"></span><span class="load-more__label">Load More</span>
+				</button>
 			</div>
 		</main>
 		<footer></footer>
