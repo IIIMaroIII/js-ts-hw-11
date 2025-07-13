@@ -1,3 +1,4 @@
+import iziToast from 'izitoast';
 import type {
 	IPixabayApi,
 	PixabayApiOptions,
@@ -15,6 +16,7 @@ export default class PixabayApi implements IPixabayApi {
 	private q: string;
 	page: number;
 	per_page: number;
+	isTheLastPage: boolean;
 
 	constructor({ baseUrl, key }: PixabayApiOptions = opt) {
 		this.baseUrl = baseUrl;
@@ -22,10 +24,20 @@ export default class PixabayApi implements IPixabayApi {
 		this.q = '';
 		this.page = 1;
 		this.per_page = 10;
+		this.isTheLastPage = false;
 	}
 	fetchImages(opt: RequestInit = {}): Promise<PixabayImagesResponse> {
 		const url: string = `${this.baseUrl}?key=${this.key}&q=${this.q}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=${this.per_page}`;
-		return fetch(url, opt).then(r => r.json() as Promise<PixabayImagesResponse>);
+		return fetch(url, opt)
+			.then(result => result.json() as Promise<PixabayImagesResponse>)
+			.then(res => {
+				this.isEndOfList(res.total);
+				return res;
+			});
+	}
+	isEndOfList(total: number): this {
+		this.isTheLastPage = this.page * this.per_page >= total;
+		return this;
 	}
 
 	setQuery(q: string): this | undefined {

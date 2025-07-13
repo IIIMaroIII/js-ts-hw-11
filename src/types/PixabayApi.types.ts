@@ -37,6 +37,7 @@ export interface PixabayImagesResponse {
 export interface IPixabayApi {
 	page: number;
 	per_page: number;
+	isTheLastPage: boolean;
 
 	fetchImages(opt: RequestInit): Promise<PixabayImagesResponse>;
 	setQuery(q: string): this | undefined;

@@ -5,6 +5,7 @@ export interface IRenderFactory {
 
 	setImages(images: PixabayImageHit[]): this;
 	renderMarkup(): void;
+	scrollToEl(el: HTMLElement): void;
 	createMarkup(): this;
 	clear(): this;
 }

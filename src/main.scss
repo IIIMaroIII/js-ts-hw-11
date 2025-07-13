@@ -1,0 +1,77 @@
+@use './sass/base/visually-hidden';
+@use './sass/utils/placeholders';
+@use './sass/base/loader';
+@use './sass/components/container';
+@import 'modern-normalize';
+@import 'reset-css';
+
+.list {
+	@extend %list;
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+a {
+	@extend %link;
+	color: inherit;
+	&:hover {
+		color: teal;
+	}
+}
+
+.image__wrapper {
+	height: 180px;
+}
+.gallery__item {
+	flex-basis: calc((100% - (3 * 8px)) / 4);
+}
+
+.gallery__img {
+	object-fit: fill;
+}
+
+img {
+	display: block;
+	height: 100%;
+	width: 100%;
+}
+
+.btn {
+	padding-left: 12px;
+	padding-right: 12px;
+	color: white;
+	border: 1px solid teal;
+	background-color: teal;
+	border-radius: 0.3rem;
+	&:hover {
+		background-color: #ccc;
+	}
+	padding: 6px 12px;
+
+	&:disabled {
+		background-color: #ccc;
+		border-color: transparent;
+		color: rgba(0, 0, 0, 0.5);
+	}
+}
+
+.load-more {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 16px;
+}
+.input {
+	display: block;
+	border: 1px solid black;
+	border-radius: 0.3rem;
+}

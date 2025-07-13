@@ -5,7 +5,7 @@ import type { PixabayImageHit } from '../types/PixabayApi.types';
 import type { IRenderFactory } from '../types/RenderFactory.types';
 import { getRef } from '../utils/getRef';
 
-const slb = new SimpleLightbox('[data-gallery] a', {
+const slb = new SimpleLightbox('.gallery__item a', {
 	captionsData: 'alt',
 	captionDelay: 250,
 });
@@ -20,6 +20,7 @@ export default class RenderFactory implements IRenderFactory {
 	}
 
 	renderMarkup(): void {
+		this.createMarkup();
 		this.root.insertAdjacentHTML('beforeend', this.markup);
 		slb.refresh();
 	}
@@ -29,6 +30,20 @@ export default class RenderFactory implements IRenderFactory {
 		return this;
 	}
 
+	scrollToEl(): void {
+		const { children } = this.root;
+		if (children.length) {
+			console.log('inside the scrollTo');
+			const lastEl = children[children.length - 1] as HTMLElement;
+			// here
+			if (lastEl) {
+				const rect = lastEl.getBoundingClientRect();
+				console.log(rect);
+				window.scroll({ top: lastEl.offsetTop - rect.height, behavior: 'smooth' });
+			}
+		}
+	}
+	// here
 	createMarkup(): this {
 		this.markup = this.images.map(this.createGalleryItem.bind(this)).join('');
 		return this;
@@ -41,11 +56,14 @@ export default class RenderFactory implements IRenderFactory {
 		return `  
         <li class="gallery__item">
             <a href="${hit.largeImageURL}" class="gallery__link">
-              <img src="${hit.previewURL}" alt="${hit.tags}" class="gallery__img">
+			<div class="image__wrapper">
+              <img src="${hit.previewURL}" alt="${hit.tags}" class="gallery__img">  
+              </div>
+              
               <div class="info__wrapper">
-                <p class="info">${hit.likes}</p>
-                <p class="info">${hit.views}</p>
-                <p class="info">${hit.comments}</p>
+                <p class="info">Likes: ${hit.likes}</p>
+                <p class="info">Views: ${hit.views}</p>
+                <p class="info">Comments:${hit.comments}</p>
                 <p class="info">${hit.downloads}</p>
               </div>
             </a>
