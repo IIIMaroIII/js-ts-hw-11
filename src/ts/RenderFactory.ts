@@ -43,6 +43,7 @@ export default class RenderFactory implements IRenderFactory {
 			}
 		}
 	}
+	s;
 	// here
 	createMarkup(): this {
 		this.markup = this.images.map(this.createGalleryItem.bind(this)).join('');
