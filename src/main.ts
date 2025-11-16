@@ -38,7 +38,6 @@ function onSearch(e: Event): void {
 	pixabayApi.resetPage();
 	loadMore.show();
 	loadMore.disable();
-
 	const target = e.target as HTMLFormElement;
 	const formData: FormData = new FormData(target);
 

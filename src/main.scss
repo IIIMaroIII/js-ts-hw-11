@@ -30,14 +30,14 @@ a {
 	flex-basis: calc((100% - (3 * 8px)) / 4);
 }
 
-.gallery__img {
-	object-fit: fill;
-}
+// .gallery__img {
+// 	object-fit: fill;
+// }
 
 img {
 	display: block;
-	height: 100%;
-	width: 100%;
+	max-width: 100%;
+	height: auto;
 }
 
 .btn {
