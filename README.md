@@ -1,6 +1,5 @@
 <-- prettier-ignore-start -->
 
-1. Цели
    1.1 Создать поиск изображений по ключевому слову вводимому в <input>
    1.2 <HTML>
     <form class="form">
